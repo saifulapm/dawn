@@ -19,6 +19,12 @@ if (!customElements.get('product-form')) {
         evt.preventDefault();
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
 
+        // Preventing form submit without required properties
+        if (!this.form.checkValidity()) {
+          this.form.reportValidity();
+          return;
+        }
+
         this.handleErrorMessage();
 
         this.submitButton.setAttribute('aria-disabled', true);
